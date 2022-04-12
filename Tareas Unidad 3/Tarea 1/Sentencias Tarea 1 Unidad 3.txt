@@ -1,0 +1,63 @@
+--1
+create view todos_empleados as select * from [Employees] where [ReportsTo]<>NULL
+select * from todos_empleados
+
+--2
+create view datos as select ProductID, CompanyName, ProductName, CategoryName, Description, QuantityPerUnit, UnitPrice, UnitsInStock, UnitsOnOrder, 
+ReorderLevel, Discontinued from [Suppliers], [products], [Categories]
+
+select * from datos
+
+--3
+create view datos_customer as select [Customers].CustomerID, CompanyName, ContactName, ContactTitle, Address, 
+City, Country, Phone, OrderDate, RequiredDate, ShippedDate from [Customers], [Orders]
+
+select * from datos_customer
+
+--4
+alter view datos_customer as select [Customers].CustomerID, CompanyName, ContactName, Address, 
+City, Country, Phone, OrderDate, RequiredDate, ShippedDate from [Customers], [Orders]
+
+select * from datos_customer
+
+--5
+drop view datos_customer
+
+
+
+
+
+
+--Parte 2
+
+--1
+create procedure SP1 @year as int
+as SELECT * FROM Orders where year([OrderDate])=(@year)
+
+exec SP1 1996
+
+--2
+create procedure SP2 @ciudad as nvarchar(15)
+as SELECT * FROM [Customers] where city=@ciudad
+
+exec SP2 'Berlin'
+
+--3
+create procedure SP3
+as SELECT * FROM [Employees] ORDER BY month(BirthDate)
+
+exec SP3
+
+--4
+create procedure SP4 @fecha as date
+as SELECT * FROM Orders where [OrderDate]=@fecha
+
+exec SP4 '1996-07-04'
+
+--5
+create procedure SP5 @ID as [nchar](5) ,@telefono as [nvarchar](24)
+as update [Customers] set [Phone]=@telefono where [CustomerID]=@ID
+
+exec SP5 'ALFKI','000-0000000'
+
+select * from [Customers]
