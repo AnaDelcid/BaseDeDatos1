@@ -1,0 +1,10 @@
+create database tarea2_eje1;
+use tarea2_eje1;
+create table arbitro(pasaporte int, anioInicioActividad date, NyApArbitro varchar(50), nacionalidad varchar(50));
+create table partido(id_partido int, fecha date, duracion varchar(50), instancia varchar (50), pasaporte int);
+create table juega(codigo_partido int, id_partido int, nombre_seleccion varchar (50));
+create table equipo(nombre_seleccion varchar(50), nombreDt varchar(50), lugar_entrenamiento varchar(50), miembroEqTecnico varchar (50));
+create table jugador(numero_camiseta int, posicion varchar (10), NyAP varchar (50), apodo varchar(30), nombre_selccion varchar(50));
+create table estadio(nombre_estadio varchar(100), ciudad varchar(100), capacidad_maxima int, id_partido int);
+create table asiste(llegaEn int, nombre_estadio varchar(100), NroTicket int);
+create table aficionado(NroTicket int, vestimenta varchar(100), ubicacion varchar(100));
